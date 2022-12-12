@@ -6,7 +6,7 @@
 /*   By: jhesso <jhesso@student.hive.fi>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/08 17:10:30 by jhesso            #+#    #+#             */
-/*   Updated: 2022/12/08 22:26:25 by jhesso           ###   ########.fr       */
+/*   Updated: 2022/12/12 23:44:21 by jhesso           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,6 +31,12 @@ static int	printf_arguments(va_list args, char arg)
 		amount_of_chars += arg_unsigned_int(va_arg(args, unsigned int));
 	else if (arg == '%')
 		amount_of_chars = arg_char('%');
+	else if (arg == 'x') // TODO all of the hex functions (xXp)
+		amount_of_chars = arg_hex_lower(va_arg(args, int));
+	else if (arg == 'X')
+		amount_of_chars = arg_hex_upper(va_arg(args, int));
+	else if (arg == 'p')
+		amount_of_chars = arg_hex_lower(va_arg(args, int));
 	return (amount_of_chars);
 }
 
