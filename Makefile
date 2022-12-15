@@ -5,26 +5,49 @@
 #                                                     +:+ +:+         +:+      #
 #    By: jhesso <jhesso@student.hive.fi>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
-#    Created: 2022/12/08 16:52:55 by jhesso            #+#    #+#              #
-#    Updated: 2022/12/08 19:35:36 by jhesso           ###   ########.fr        #
+#    Created: 2022/12/15 19:43:43 by jhesso            #+#    #+#              #
+#    Updated: 2022/12/15 20:43:47 by jhesso           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NAME = libftprintf.a
 
-CFLAGS = -Wall -Wextra -Werror
+CC = cc
+FLAGS = -Wall -Wextra -Werror
+
+RM = rm -f
+
+LIBFT_D = ./libft
+LIBFT = ./libft/libft.a
+
+SRC = src/ft_printf.c src/ft_itoa_unsigned.c src/hex.c src/arguments.c
+
+INCLUDE = ./include/
+
+OBJ = ft_printf.o ft_itoa_unsigned.o hex.o arguments.o
+
+GREEN = \033[0;32m
+BLUE = \033[0;34m
+RESET = \033[0m
 
 all: $(NAME)
 
 $(NAME):
-	cc $(CFLAGS) $(SRC) -c
-	ar rcs $(NAME) $(OBJ)
+	@$(MAKE) -C $(LIBFT_D)
+	@cp $(LIBFT) ./$(NAME)
+	@$(CC) $(FLAGS) -c $(SRC) -I $(INCLUDE)
+	@ar rus $(NAME) $(OBJ)
+	@echo "$(GREEN)compiling library$(RESET)"
 
 clean:
-	/bin/rm *.o
+	@$(MAKE) clean -C $(LIBFT_D)
+	@$(RM) $(OBJ)
+	@echo "$(BLUE)removing object files$(RESET)"
 
 fclean: clean
-	/bin/rm $(NAME)
+	@$(MAKE) fclean -C $(LIBFT_D)
+	@$(RM) $(NAME)
+	@echo "$(BLUE)make fucking clean$(RESET)"
 
 re: fclean all
 

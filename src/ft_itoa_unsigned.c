@@ -6,11 +6,11 @@
 /*   By: jhesso <jhesso@student.hive.fi>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/08 22:20:48 by jhesso            #+#    #+#             */
-/*   Updated: 2022/12/12 23:16:17 by jhesso           ###   ########.fr       */
+/*   Updated: 2022/12/15 20:17:38 by jhesso           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../include/ft_printf.h"
+#include "ft_printf.h"
 
 static int	nlen(unsigned long int n)
 {
@@ -27,13 +27,6 @@ static int	nlen(unsigned long int n)
 	return (len);
 }
 
-static char	*return_zero(char *str)
-{
-	str[0] = '0';
-	str[1] = '\0';
-	return (str);
-}
-
 char	*ft_itoa_unsigned(unsigned int n)
 {
 	char		*str;
@@ -47,7 +40,10 @@ char	*ft_itoa_unsigned(unsigned int n)
 		return (NULL);
 	str[i--] = '\0';
 	if (nbr == 0)
-		return (return_zero(str));
+	{
+		str[0] = '0';
+		str[1] = '\0';
+	}
 	while (nbr > 0)
 	{
 		str[i] = '0' + (nbr % 10);

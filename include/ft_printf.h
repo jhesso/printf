@@ -6,7 +6,7 @@
 /*   By: jhesso <jhesso@student.hive.fi>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/08 17:11:58 by jhesso            #+#    #+#             */
-/*   Updated: 2022/12/12 23:43:41 by jhesso           ###   ########.fr       */
+/*   Updated: 2022/12/15 19:35:28 by jhesso           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,11 +16,9 @@
 # include <stdarg.h>
 # include "../libft/includes/libft.h"
 
-int		arg_char(char c);
 int		arg_int(int nbr);
 int		arg_str(char *str);
-int		arg_hex_lower(int nbr);
-int		arg_hex_upper(int nbr);
+int		arg_hex(unsigned long long nbr, char casing);
 int		ft_printf(const char *, ...);
 int		arg_unsigned_int(unsigned int nbr);
 

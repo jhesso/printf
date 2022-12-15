@@ -6,33 +6,76 @@
 /*   By: jhesso <jhesso@student.hive.fi>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/12 23:38:45 by jhesso            #+#    #+#             */
-/*   Updated: 2022/12/13 02:32:33 by jhesso           ###   ########.fr       */
+/*   Updated: 2022/12/15 20:20:17 by jhesso           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../include/ft_printf.h"
+#include "ft_printf.h"
 
-/*
-*	To convert a decimal number to hexadecimal:
-*	Number % 16 == hexadecimal number
-*	Number / 16 == new value of number
-*	do this while Number / 16 != 0
-*	the hex number == each digit from the reminders in reverse order (the last == the first)
-?	digits 0-9 == digits
-?	numbers 10-15 == characters A-F
-?	for example:
-?	1 == 1
-?	10 == A
-?	16 == F
-?	42 == 2A || 0x2A ( 42 % 16 == 10 == A, 42 / 16 == 2, 2 % 16 == 2, 2 / 16 == 0)
-*/
-
-int	arg_hex_lower(int nbr)
+static unsigned int	calculate_hex_digits(unsigned long long nbr)
 {
-	return (nbr);
+	unsigned int	amount;
+
+	amount = 0;
+	if (nbr == 0)
+		return (1);
+	while (nbr > 0)
+	{
+		nbr = nbr / 16;
+		amount++;
+	}
+	return (amount);
 }
 
-int	arg_hex_upper(int nbr)
+char	*convert_to_hex(unsigned long long nbr)
 {
-	return (nbr);
+	char				*hex_num;
+	unsigned long long	decimal;
+	int					i;
+	int					num_of_digits;
+
+	num_of_digits = calculate_hex_digits(nbr);
+	hex_num = malloc(sizeof(char) * (num_of_digits + 1));
+	if (hex_num == NULL)
+		return (NULL);
+	i = 0;
+	while (num_of_digits > 0)
+	{
+		decimal = nbr % 16;
+		// printf("result of mod calc: %llu\n", decimal);
+		if (decimal < 10)
+			hex_num[i++] = decimal + '0';
+		else
+			hex_num[i++] = decimal + 87;
+		nbr = nbr / 16;
+		num_of_digits--;
+	}
+	hex_num[i] = '\0';
+	return (hex_num);
+}
+
+int	arg_hex(unsigned long long nbr, char casing)
+{
+	char	*hex_num;
+	int		len;
+	int		i;
+
+	hex_num = convert_to_hex(nbr);
+	hex_num = ft_strrev(hex_num);
+	i = 0;
+	if (casing == 'x')
+		len = ft_putstr_fd(hex_num, 1);
+	else
+	{
+		while (hex_num[i])
+		{
+			if (hex_num[i] >= 'a' && hex_num[i] <= 'f')
+				hex_num[i] = ft_toupper(hex_num[i]);
+			i++;
+		}
+		len = ft_putstr_fd(hex_num, 1);
+	}
+	if (hex_num != NULL)
+		free (hex_num);
+	return (len);
 }
