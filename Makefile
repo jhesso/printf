@@ -6,7 +6,7 @@
 #    By: jhesso <jhesso@student.hive.fi>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/12/15 19:43:43 by jhesso            #+#    #+#              #
-#    Updated: 2022/12/15 20:43:47 by jhesso           ###   ########.fr        #
+#    Updated: 2023/01/18 17:48:55 by jhesso           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -33,21 +33,24 @@ RESET = \033[0m
 all: $(NAME)
 
 $(NAME):
+	@echo "$(BLUE)compiling library$(RESET)"
 	@$(MAKE) -C $(LIBFT_D)
 	@cp $(LIBFT) ./$(NAME)
 	@$(CC) $(FLAGS) -c $(SRC) -I $(INCLUDE)
 	@ar rus $(NAME) $(OBJ)
-	@echo "$(GREEN)compiling library$(RESET)"
+	@echo "$(GREEN)DONE$(RESET)"
 
 clean:
+	@echo "$(BLUE)removing object files$(RESET)"
 	@$(MAKE) clean -C $(LIBFT_D)
 	@$(RM) $(OBJ)
-	@echo "$(BLUE)removing object files$(RESET)"
+	@echo "$(GREEN)DONE$(RESET)"
 
 fclean: clean
+	@echo "$(BLUE)Removing library$(RESET)"
 	@$(MAKE) fclean -C $(LIBFT_D)
 	@$(RM) $(NAME)
-	@echo "$(BLUE)make fucking clean$(RESET)"
+	@echo "$(GREEN)DONE$(RESET)"
 
 re: fclean all
 

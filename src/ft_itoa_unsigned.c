@@ -6,7 +6,7 @@
 /*   By: jhesso <jhesso@student.hive.fi>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/08 22:20:48 by jhesso            #+#    #+#             */
-/*   Updated: 2022/12/15 20:17:38 by jhesso           ###   ########.fr       */
+/*   Updated: 2022/12/16 13:03:03 by jhesso           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,9 +29,9 @@ static int	nlen(unsigned long int n)
 
 char	*ft_itoa_unsigned(unsigned int n)
 {
-	char		*str;
+	char			*str;
 	unsigned int	nbr;
-	int			i;
+	int				i;
 
 	nbr = n;
 	i = nlen(nbr);

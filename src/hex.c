@@ -6,7 +6,7 @@
 /*   By: jhesso <jhesso@student.hive.fi>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/12 23:38:45 by jhesso            #+#    #+#             */
-/*   Updated: 2022/12/15 20:20:17 by jhesso           ###   ########.fr       */
+/*   Updated: 2022/12/16 13:25:35 by jhesso           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,7 @@ static unsigned int	calculate_hex_digits(unsigned long long nbr)
 	return (amount);
 }
 
-char	*convert_to_hex(unsigned long long nbr)
+static char	*convert_to_hex(unsigned long long nbr)
 {
 	char				*hex_num;
 	unsigned long long	decimal;
@@ -42,7 +42,6 @@ char	*convert_to_hex(unsigned long long nbr)
 	while (num_of_digits > 0)
 	{
 		decimal = nbr % 16;
-		// printf("result of mod calc: %llu\n", decimal);
 		if (decimal < 10)
 			hex_num[i++] = decimal + '0';
 		else
@@ -61,6 +60,8 @@ int	arg_hex(unsigned long long nbr, char casing)
 	int		i;
 
 	hex_num = convert_to_hex(nbr);
+	if (hex_num == NULL)
+		return(0);
 	hex_num = ft_strrev(hex_num);
 	i = 0;
 	if (casing == 'x')

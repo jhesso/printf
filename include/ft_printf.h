@@ -6,7 +6,7 @@
 /*   By: jhesso <jhesso@student.hive.fi>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/08 17:11:58 by jhesso            #+#    #+#             */
-/*   Updated: 2022/12/15 19:35:28 by jhesso           ###   ########.fr       */
+/*   Updated: 2022/12/16 13:27:32 by jhesso           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,8 +18,8 @@
 
 int		arg_int(int nbr);
 int		arg_str(char *str);
-int		arg_hex(unsigned long long nbr, char casing);
 int		ft_printf(const char *, ...);
+int		arg_hex(unsigned long long nbr, char casing);
 int		arg_unsigned_int(unsigned int nbr);
 
 char	*ft_itoa_unsigned(unsigned int n);
